@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import '../../../scss/auth.scss'
 
 function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  
+
   const [error, setError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let email = event.target.email.value;
+    let password = event.target.password.value;
 
     try {
-      const response = await fetch("/api/signin", {
+      const response = await fetch("/signin/SignIn", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -36,17 +38,14 @@ function SignIn() {
             <input
                 type="email"
                 id="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
             />
             <label htmlFor="password">Password:</label>
             <input
                 type="password"
                 id="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
             />
             <button type="submit">Sign In</button>
+            <button>Forgot password?</button>
             </form>
         </div>
     </div>
