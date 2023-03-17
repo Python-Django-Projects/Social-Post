@@ -1,9 +1,10 @@
-import './scss/App.scss';
+import './scss/auth.scss'
+import Signin from './screens/auth/signin/SignIn';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hi</h1>
+     <Signin/>
     </div>
   );
 }
