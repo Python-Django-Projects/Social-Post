@@ -1,11 +1,23 @@
+
 import './scss/auth.scss'
-import Signin from './screens/auth/signin/SignIn';
+import SignIn from './screens/auth/signin/SignIn';
+import SignUp from './screens/auth/signup/SignUp';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-     <Signin/>
-    </div>
+
+    <BrowserRouter>
+        <Routes>
+        <Route path='/' Component={SignIn}/>
+        <Route path='signup' Component={SignUp}/>
+        </Routes>
+        
+    </BrowserRouter>
+      
+    
+     
   );
 }
 
