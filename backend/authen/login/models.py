@@ -8,7 +8,7 @@ from django.db import models
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
         email = self.normalize_email(email)
-
+        
         user = self.model(email=email, **extra_fields)
 
         user.set_password(password)
@@ -41,3 +41,4 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
