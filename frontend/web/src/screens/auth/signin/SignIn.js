@@ -1,36 +1,35 @@
-
 import React, { useState } from "react";
 import '../../../scss/auth.scss'
-// import SignUp from "../signup/SignUp";
+import { signin_api } from "../../../services";
+
+
 
 function SignIn() {
   
-
   const [error, setError] = useState(false);
 
   const handleSubmit = async (event) => {
+
     event.preventDefault();
     
     let email = event.target.email.value;
+
     let password = event.target.password.value;
-    if(email.length === 0 || password.length === 0) {
-      setError(true)
-    }
+
+    // if(email.length === 0 || password.length === 0) {
+
+    //   setError(true)
+    // }
     try {
-      const response = await fetch("/signin/SignIn", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        const { message } = await response.json();
-        throw new Error(message);
-      }
-
+      // http://127.0.0.1:8000/auth/login/
+     let result = await signin_api(email,password);
+     console.log("result: ",result)
+     alert(result.message)
       // Sign-in successful
     } catch (error) {
+
       setError(error.message);
+
     }
   };
 
@@ -38,11 +37,12 @@ function SignIn() {
     <div>
         <div className="form-container">
             <form onSubmit={handleSubmit}>
-            {error && <div>{error}</div>}
+            {/* {error && <div>{error}</div>} */}
             <label htmlFor="email">Email:</label>
             <input
                 type="email"
                 id="email"
+                required
             />
             {error?
             <span> Invalid Email Adress </span>:''}
@@ -50,6 +50,7 @@ function SignIn() {
             <input
                 type="password"
                 id="password"
+                required
             />
             {error?
             <span> Invalid Password </span>:''}
