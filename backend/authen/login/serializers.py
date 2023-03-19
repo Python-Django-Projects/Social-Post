@@ -22,7 +22,7 @@ class SignUpSerializer(serializers.ModelSerializer):
             raise ValidationError("Email has already been used")
 
         return super().validate(attrs)
-
+    
     def create(self, validated_data):
         password = validated_data.pop("password")
 
